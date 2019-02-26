@@ -82,6 +82,7 @@ def gen_daily_results(template, requested_date, cursor):
 if __name__ == '__main__':
 
   arg_parser = argparse.ArgumentParser()
+  arg_parser.add_argument("-db", help="database name")
   arg_parser.add_argument("-template_dir", help="directory where the templates are")
   arg_parser.add_argument("-results_dir", help="directory where the results will be saved")
   args = arg_parser.parse_args()
@@ -98,6 +99,10 @@ if __name__ == '__main__':
   template_file_name = template_directory + "results.html"
   template_all_file_name = template_directory + "index.html"
 
+  if args.db == None:
+    print "ERROR: no database specified!"
+    exit(-1)
+
   tf = open(template_file_name, 'r')
   template = tf.read()
   tf.close()
@@ -106,7 +111,7 @@ if __name__ == '__main__':
   overall_template = tf.read()
   tf.close()
 
-  sql_connection = sqlite3.connect('speedtest.db')
+  sql_connection = sqlite3.connect(args.db)
 
   cursor = sql_connection.cursor()
 
