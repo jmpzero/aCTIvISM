@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title> Speedtest: DATE, Avg. Dl DL, Avg. Ul UL, Avg. Ping PING </title>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+</head>
+
+
+<body>
+
+  <!--<div style="position:absolute; top:60px; left:10px; width:500px; height:500px;">-->
+  <div style="width:1024px; height:500px">
+  <canvas id="line-chart" style="width:1024px"></canvas>
+  </div>
+  <script>
+    var ctx = document.getElementById("line-chart").getContext('2d');
+    var myChart = new Chart(document.getElementById("line-chart"), {
+    data: {
+      labels: LABELS,
+      datasets: [{
+        type: 'line',
+        data: DATADOWNLOAD,
+        label: "Download",
+        borderColor: "#FF0000",
+        fill: false
+      },{
+        type: 'line',
+        data: DATAUPLOAD,
+        label: "Upload",
+        borderColor: "#00FF00",
+        fill: false
+      }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Internet speed measurement'
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Time'
+          }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Speed [MBit/s]'
+          }
+        }]
+      }
+    }
+  });
+  </script>
+
+  <div>
+    <table>
+      <tr>
+        <td>Avg. Ping:</td>
+        <td>PING</td>
+      </tr>
+      <tr>
+        <td>Avg. Download:</td>
+        <td>DL</td>
+      </tr>
+      <tr>
+        <td>Avg. Upload:</td>
+        <td>UL</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    Single Results:
+    <table>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Ping</th>
+      <th>Download</th>
+      <th>Upload</th>
+      <th>IP</th>
+      <th>Server</th>
+      <th>Country</th>
+      <th>Sponsor</th>
+      SINGLE RESULTS
+    </table>
+
+</body>
+
+</html>
