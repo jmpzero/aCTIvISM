@@ -19,3 +19,9 @@ virtualenv myEnv
 source myEnv/bin/activate
 pip install < requirements.txt
 ```
+
+# Todo
+- [ ] Configuration file
+- [ ] Placement of database
+- [ ] Server selection
+- [ ] Analysis of multiple servers, etc.
