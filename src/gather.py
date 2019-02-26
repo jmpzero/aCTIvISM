@@ -10,9 +10,6 @@ import speedtest
 import sqlite3
 import sys
 
-from operator import itemgetter
-from collections import OrderedDict
-
 def create_tables(connection):
   cursor = connection.cursor()
   cursor.execute("CREATE TABLE CLIENT (cid, rating, loggedin, isprating, ispdlavg, ip, isp, lon, ispulavg, country, lat)")
@@ -64,8 +61,6 @@ if __name__ == "__main__":
   arg_parser.add_argument("-s",  help="server id of speedtest server, if not specified best server will be taken")
   arg_parser.add_argument("-list", help="lists servers in ascending order")
   args = arg_parser.parse_args()
-
-  print args
 
 
   servers = []
