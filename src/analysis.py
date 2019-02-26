@@ -1,10 +1,7 @@
-import sqlite3
+import argparse
 import re
+import sqlite3
 
-results_directory = "../results/"
-template_directory = "../templates/"
-template_file_name = template_directory + "results.html"
-template_all_file_name = template_directory + "index.html"
 
 def gen_daily_results(template, requested_date, cursor):
   cursor.execute("""
@@ -83,6 +80,23 @@ def gen_daily_results(template, requested_date, cursor):
 
 
 if __name__ == '__main__':
+
+  arg_parser = argparse.ArgumentParser()
+  arg_parser.add_argument("-template_dir", help="directory where the templates are")
+  arg_parser.add_argument("-results_dir", help="directory where the results will be saved")
+  args = arg_parser.parse_args()
+
+  results_directory = "../results/"
+  template_directory = "../templates/"
+
+  if args.results_dir != None:
+    results_directory = args.results_dir + "/"
+
+  if args.template_dir != None:
+    template_directory = args.template_dir + "/"
+
+  template_file_name = template_directory + "results.html"
+  template_all_file_name = template_directory + "index.html"
 
   tf = open(template_file_name, 'r')
   template = tf.read()
