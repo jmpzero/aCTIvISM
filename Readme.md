@@ -17,7 +17,7 @@ The requirements.txt file contains all necessary requirements for your installat
 ```
 virtualenv myEnv
 source myEnv/bin/activate
-pip install < requirements.txt
+pip install -r requirements.txt
 ```
 
 # Todo
