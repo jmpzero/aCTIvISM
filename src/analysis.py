@@ -38,6 +38,7 @@ def gen_daily_results(template, requested_date, cursor):
   avg_ping = 0
 
   avg = []
+  avgul = []
 
   for r in rows:
     label.append(str(r[1]))
@@ -60,6 +61,15 @@ def gen_daily_results(template, requested_date, cursor):
     avg_ping = avg_ping + r[2]
     cnt = cnt + 1
 
+    if len(avgul) == 0:
+      avgul.append(r[4]/1000.0/1000.0)
+      avgul.append(r[4]/1000.0/1000.0)
+      avgul.append(r[4]/1000.0/1000.0)
+      avgul.append(r[4]/1000.0/1000.0)
+      avgul.append(r[4]/1000.0/1000.0)
+    else:
+      avgul.append( (avgul[-4] + avgul[-3] + avgul[-2] + avgul[-1] + r[4]/1000.0/1000.0) / 5 )
+
     if len(avg) == 0:
       avg.append(r[3]/1000.0/1000.0)
       avg.append(r[3]/1000.0/1000.0)
@@ -81,6 +91,7 @@ def gen_daily_results(template, requested_date, cursor):
   results = re.sub("DATADOWNLOAD", str(data_download), results)
   results = re.sub("DATAUPLOAD", str(data_upload), results)
   results = re.sub("AVGDOWNLOAD", str(avg[4:]), results)
+  results = re.sub("AVGUPLOAD", str(avgul[4:]), results)
   results = re.sub("DATE", requested_date, results)
 
 
